@@ -26,8 +26,13 @@ M.Sc. in Artificial Intelligence, 9.11/10.
 Self-hosted, multi-tenant platform that answers the phone and replies on WhatsApp for real
 businesses — a hair salon, a mechanic's workshop and others, in production with paying clients.
 
-- **Voice** — LiveKit Agents over SIP telephony: streaming speech-to-text, an LLM served at
-  **~250 ms time-to-first-token**, and multi-vendor TTS.
+- **Voice** — LiveKit Agents over SIP telephony, with automatic cross-vendor failover on
+  speech-to-text, LLM and speech synthesis. I picked the stack by measurement rather than vendor
+  claims: A/B-tested five speech-to-text engines on recorded traffic, then validated the
+  migration across **429 real calls** — resolution rose from **36% to 61%** and
+  agent-attributable failures nearly halved. Along the way I tracked down a **789 ms event-loop
+  stall** from a lazily imported fallback plugin that was silencing the agent in almost every
+  call, invisible in the transcripts.
 - **WhatsApp** — official Meta Cloud API with Chatwoot. HMAC-signed webhooks, durable
   reservations against double-sending, delivery receipts kept separate from queued state, and
   automatic suspension of bot replies when a human picks up the thread.
@@ -36,13 +41,16 @@ businesses — a hair salon, a mechanic's workshop and others, in production wit
   stored hashed.
 - **Memory** — per-caller memory injected ahead of the system prompt, so someone who calls back
   is recognised instead of starting over.
-- **Operations** — admin and client dashboards, per-call latency breakdowns, provider cost
-  reconciliation, invoicing, backups and retention policies.
+- **Product** — a public self-service booking site that replaced a third-party SaaS, and a live
+  dashboard the owner runs on a tablet: real-time agenda plus a call log where an LLM
+  post-analysis separates genuine agent failures from a calendar that was simply full.
+- **Operations** — per-call latency breakdowns, provider cost reconciliation, invoicing, backups
+  and retention policies.
 
-**860+ automated tests** across 97 suites, GitHub Actions config validation, Docker Compose on a
+**890+ automated tests**, GitHub Actions CI, GDPR retention and records of processing, Docker Compose on a
 Linux VPS.
 
-`Python` `LiveKit` `FastAPI` `SIP` `WhatsApp Cloud API` `Google Calendar` `Docker` `React`
+`Python` `LiveKit` `FastAPI` `SIP` `WhatsApp Cloud API` `Cerebras` `Vertex AI` `Google Calendar` `Docker` `React`
 
 ## 📖 [TuCuento](https://tucuento.es) — generative AI, end to end
 
