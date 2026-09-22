@@ -13,21 +13,36 @@
 
 ---
 
-AI engineer working across LLM and agent systems, computer vision and multimodal deep learning. Mostly Python.
+AI engineer based in Dublin. I work mostly in Python, across LLM and agent systems, computer vision and multimodal deep learning.
 
-What interests me is the whole path rather than any one piece of it: the model and the data work, then the API around it, the deployment, the evaluation harness, and the monitoring that tells you when something has quietly started to drift. Most of what I have built ends up in production with people depending on it, which turns out to be a good teacher about latency budgets, failure modes and honest evaluation.
+I like building things end to end: the model and the data work, the API around it, the deployment, the tests and the monitoring. Most of what I have built runs in production for real customers, which is where I learned to care about latency, cost and what happens when something fails.
 
-M.Sc. in Artificial Intelligence, 9.11/10. Based in Dublin.
+M.Sc. in Artificial Intelligence, 9.11/10.
 
 <br>
 
-## 🎙️ [SyncoLabs](https://synco.es) — AI voice agents for local businesses
+## 📞 [Synco AI](https://synco.es) — AI receptionist for local businesses
 
-Self-hosted conversational platform, live with paying B2B clients. LiveKit Agents orchestrating streaming speech-to-text, LLMs served at **~250 ms time-to-first-token** and multi-vendor TTS, all over SIP telephony.
+Self-hosted, multi-tenant platform that answers the phone and replies on WhatsApp for real
+businesses — a hair salon, a mechanic's workshop and others, in production with paying clients.
 
-Multi-tenant from the ground up: per-client agent configuration, auto-discovered function-calling tools, a FastAPI backend with JWT auth and a React operations dashboard. **860+ automated tests** across 97 suites, with per-call latency breakdowns and provider cost reconciliation.
+- **Voice** — LiveKit Agents over SIP telephony: streaming speech-to-text, an LLM served at
+  **~250 ms time-to-first-token**, and multi-vendor TTS.
+- **WhatsApp** — official Meta Cloud API with Chatwoot. HMAC-signed webhooks, durable
+  reservations against double-sending, delivery receipts kept separate from queued state, and
+  automatic suspension of bot replies when a human picks up the thread.
+- **Booking** — a separate multi-client Tools API over Google Calendar: idempotent appointment
+  creation, batch booking with best-effort rollback, every request audited with phone numbers
+  stored hashed.
+- **Memory** — per-caller memory injected ahead of the system prompt, so someone who calls back
+  is recognised instead of starting over.
+- **Operations** — admin and client dashboards, per-call latency breakdowns, provider cost
+  reconciliation, invoicing, backups and retention policies.
 
-`Python` `LiveKit` `FastAPI` `SIP` `Docker` `React`
+**860+ automated tests** across 97 suites, GitHub Actions config validation, Docker Compose on a
+Linux VPS.
+
+`Python` `LiveKit` `FastAPI` `SIP` `WhatsApp Cloud API` `Google Calendar` `Docker` `React`
 
 ## 📖 [TuCuento](https://tucuento.es) — generative AI, end to end
 
