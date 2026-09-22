@@ -24,31 +24,14 @@ M.Sc. in Artificial Intelligence, 9.11/10.
 ## 📞 [Synco AI](https://synco.es) — AI receptionist for local businesses
 
 Self-hosted, multi-tenant platform that answers the phone and replies on WhatsApp for real
-businesses — a hair salon, a mechanic's workshop and others, in production with paying clients.
+businesses — a hair salon, a mechanic's workshop and others. It has handled thousands of calls
+over recent months, with paying clients depending on it.
 
-- **Voice** — LiveKit Agents over SIP telephony, with automatic cross-vendor failover on
-  speech-to-text, LLM and speech synthesis. I picked the stack by measurement rather than vendor
-  claims: A/B-tested five speech-to-text engines on recorded traffic, then validated the
-  migration across **429 real calls** — resolution rose from **36% to 61%** and
-  agent-attributable failures nearly halved. Along the way I tracked down a **789 ms event-loop
-  stall** from a lazily imported fallback plugin that was silencing the agent in almost every
-  call, invisible in the transcripts.
-- **WhatsApp** — official Meta Cloud API with Chatwoot. HMAC-signed webhooks, durable
-  reservations against double-sending, delivery receipts kept separate from queued state, and
-  automatic suspension of bot replies when a human picks up the thread.
-- **Booking** — a separate multi-client Tools API over Google Calendar: idempotent appointment
-  creation, batch booking with best-effort rollback, every request audited with phone numbers
-  stored hashed.
-- **Memory** — per-caller memory injected ahead of the system prompt, so someone who calls back
-  is recognised instead of starting over.
-- **Product** — a public self-service booking site that replaced a third-party SaaS, and a live
-  dashboard the owner runs on a tablet: real-time agenda plus a call log where an LLM
-  post-analysis separates genuine agent failures from a calendar that was simply full.
-- **Operations** — per-call latency breakdowns, provider cost reconciliation, invoicing, backups
-  and retention policies.
-
-**890+ automated tests**, GitHub Actions CI, GDPR retention and records of processing, Docker Compose on a
-Linux VPS.
+LiveKit Agents over SIP telephony with automatic cross-vendor failover on speech-to-text, LLM
+and speech synthesis; the official WhatsApp Cloud API with Chatwoot and hand-off to a human
+mid-thread; a multi-client booking API over Google Calendar; and a dashboard the business owner
+runs on a tablet. 890+ automated tests, CI, cost reconciliation and GDPR retention, on Docker
+Compose.
 
 `Python` `LiveKit` `FastAPI` `SIP` `WhatsApp Cloud API` `Cerebras` `Vertex AI` `Google Calendar` `Docker` `React`
 
