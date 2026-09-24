@@ -96,6 +96,8 @@ Deep learning for fine-grained animal behaviour recognition in the wild.
 
 **[cpp-search-engine](https://github.com/73bruno/cpp-search-engine)** — a search engine written from scratch in C++ with no external libraries. Hand-written tokenizer state machine, inverted index with positional postings and disk spilling, Porter stemming, and BM25 / DFR ranking with TREC-format evaluation.
 
+**[art-with-drones](https://github.com/73bruno/art-with-drones)** — a distributed drone-show system: independent processes coordinated over Kafka, sockets and an HTTPS REST registry, with failure detection, engine recovery and hybrid RSA/AES encryption.
+
 > Most of what I work on lives in private repositories — they are live commercial products with client data in them. The projects above are the ones I can open up, and I am happy to walk through the architecture of any of the others.
 
 <br>
